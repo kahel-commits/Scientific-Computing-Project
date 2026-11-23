@@ -1,0 +1,15 @@
+import numpy as np
+t = np.array([18.5,18.0,17.8,17.5,17.9,19.0,21.5,23.8,25.6,27.1,28.3,29.0,29.4,29.1,28.5,27.6,26.2,24.8,23.4,22.1,21.0,20.2,19.6,19.0])
+print("--- PART C: heat wave, every reading +5 C ---")
+t2 = t + 5
+print(f"Original mean/min/max: {t.mean():.2f} / {t.min():.2f} / {t.max():.2f}")
+print(f"Heat-wave mean/min/max: {t2.mean():.2f} / {t2.min():.2f} / {t2.max():.2f}")
+print(f"Heat-wave mean in F: {1.8*t2.mean()+32:.2f}  (original {1.8*t.mean()+32:.2f})")
+print(f"Std. dev original {t.std():.3f}, heat wave {t2.std():.3f}")
+print("--- PART E: vaccine cold-chain fridge (safe range 2-8 C), 24 hourly readings ---")
+fridge = np.array([4.1,4.3,4.0,4.2,4.5,5.0,5.8,6.9,7.6,8.4,8.9,9.3,9.1,8.2,7.4,6.6,5.9,5.2,4.8,4.5,4.4,4.2,4.1,4.0])
+bad = (fridge < 2) | (fridge > 8)
+print(f"Mean {fridge.mean():.2f} C, min {fridge.min():.1f}, max {fridge.max():.1f}")
+print(f"Hours outside 2-8 C: {bad.sum()} at hours {np.where(bad)[0].tolist()}")
+print(f"Fraction of day out of range: {bad.mean():.1%}")
+print(f"Readings in Fahrenheit (first 4): {np.round(1.8*fridge[:4]+32,2)}")
